@@ -55,6 +55,17 @@ public class PhoneCreatorViewController implements Initializable {
             e.printStackTrace();
         }
 
+        makeChoiceBox.getSelectionModel().selectedItemProperty().addListener(
+                (observable, oldValue, newValue)->
+                {
+                    try {
+                        osChoiceBox.setValue(DBConnect.getOSForManufacturer(newValue));
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                }
+        );
+
 
     }
 }
