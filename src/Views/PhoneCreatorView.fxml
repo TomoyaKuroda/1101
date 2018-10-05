@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.PhoneCreatorViewController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.PhoneCreatorViewController">
    <children>
       <HBox prefHeight="400.0" prefWidth="600.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -76,25 +76,25 @@
                      </font>
                   </Label>
                   <ChoiceBox fx:id="makeChoiceBox" prefWidth="150.0" GridPane.columnIndex="1" />
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField fx:id="modelTextField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <ChoiceBox fx:id="osChoiceBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <TextField fx:id="screenSizeTextField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                   <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                      <children>
-                        <Slider prefHeight="14.0" prefWidth="90.0" />
-                        <Label text="Label" />
+                        <Slider fx:id="slider" prefHeight="14.0" prefWidth="90.0" />
+                        <Label fx:id="memorySlider" text="Label" />
                      </children>
                   </HBox>
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                  <TextField fx:id="frontCameraTextField" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <TextField fx:id="rearCameraTextField" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                  <TextField fx:id="priceTextField" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                </children>
             </GridPane>
             <VBox alignment="CENTER" spacing="20.0">
                <children>
                   <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
                   <Button mnemonicParsing="false" text="Choose Image" />
-                  <Button mnemonicParsing="false" text="Create Phone" />
+                  <Button mnemonicParsing="false" onAction="#createPhoneButtonPushed" text="Create Phone" />
                </children>
             </VBox>
          </children>
