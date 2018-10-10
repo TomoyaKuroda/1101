@@ -1,6 +1,7 @@
 package Controllers;
 
 import Models.DBConnect;
+import Models.MobilePhone;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -62,16 +63,34 @@ public class PhoneCreatorViewController implements Initializable {
         }
 
         makeChoiceBox.getSelectionModel().selectedItemProperty().addListener(
-                (observable, oldValue, newValue)->
-                {
-                    try {
-                        osChoiceBox.setValue(DBConnect.getOSForManufacturer(newValue));
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                    }
-                }
+                        (observable, oldValue, newValue)->
+                        {
+                            try {
+                                osChoiceBox.setValue(DBConnect.getOSForManufacturer(newValue));
+                            } catch (SQLException e) {
+                                e.printStackTrace();
+                            }
+                        }
         );
 
 
+    }
+
+    public void createPhoneButtonPushed() {
+        try {
+            MobilePhone newPhone = new MobilePhone(
+                    makeChoiceBox.getValue(),
+                    modelTextField.getText(),
+                    osChoiceBox.getValue(),
+                    Double.parseDouble(screenSizeTextField.getText()),
+                    64,
+                    Double.parseDouble(frontCameraTextField.getText()),
+                    Double.parseDouble(rearCameraTextField.getText()),
+                    Double.parseDouble(priceTextField.getText())
+            );
+            DBConnect.insertPhoneIntoDB(newPhone);
+        } catch (IllegalArgumentException | SQLException e) {
+            System.err.printf("Normally this would go in a label on the GUI %n%s", e.toString());
+        }
     }
 }

@@ -9,8 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.TableOfPhonesView">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.TableOfPhonesViewController">
    <children>
       <VBox alignment="TOP_CENTER" layoutX="164.0" layoutY="28.0" prefHeight="400.0" prefWidth="600.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -19,15 +18,15 @@
                   <Font size="24.0" />
                </font>
             </Label>
-            <TableView prefHeight="200.0" prefWidth="200.0">
+            <TableView fx:id="tableView" prefHeight="200.0" prefWidth="200.0">
               <columns>
-                <TableColumn prefWidth="75.0" text="Make" />
-                <TableColumn prefWidth="75.0" text="Model" />
-                  <TableColumn prefWidth="75.0" text="OS" />
-                  <TableColumn prefWidth="75.0" text="Screen Size" />
-                  <TableColumn prefWidth="75.0" text="Memory" />
-                  <TableColumn prefWidth="89.0" text="Front Camera" />
-                  <TableColumn prefWidth="77.0" text="Rear Camera" />
+                <TableColumn fx:id="makeColumn" prefWidth="75.0" text="Make" />
+                <TableColumn fx:id="modelColumn" prefWidth="75.0" text="Model" />
+                  <TableColumn fx:id="osColumn" prefWidth="75.0" text="OS" />
+                  <TableColumn fx:id="screenSizeColumn" prefWidth="75.0" text="Screen Size" />
+                  <TableColumn fx:id="memoryColumn" prefWidth="75.0" text="Memory" />
+                  <TableColumn fx:id="frontCameraColumn" prefWidth="89.0" text="Front Camera" />
+                  <TableColumn fx:id="rearCameraColumn" prefWidth="77.0" text="Rear Camera" />
               </columns>
             </TableView>
             <Button mnemonicParsing="false" text="Create new Phone Object">

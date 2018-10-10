@@ -69,7 +69,7 @@ public class MobilePhone {
     }
 
     public void setScreenSize(double screenSize) {
-        if (screenSize>0)
+        if (screenSize>=0)
             this.screenSize = screenSize;
         else
             throw new IllegalArgumentException("screen size cannot be negative");
@@ -80,7 +80,7 @@ public class MobilePhone {
     }
 
     public void setMemory(double memory) {
-        if (memory > 0 && memory <=512)
+        if (memory >= 0 && memory <=512)
             this.memory = memory;
         else
             throw new IllegalArgumentException("memory must be 0-512");

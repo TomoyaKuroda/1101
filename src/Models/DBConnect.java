@@ -45,6 +45,55 @@ public class DBConnect {
         return manufacturers;
     }
 
+    public static ArrayList<MobilePhone> getPhones() throws SQLException {
+        ArrayList<MobilePhone> phones = new ArrayList<>();
+        Connection conn = null;
+        Statement statement = null;
+        ResultSet resultSet = null;
+
+        try{
+            //1. Connect to the database
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/phones?useSSL=false",
+                    user, password);
+
+            //2. create a Statement object
+            statement = conn.createStatement();
+
+            //3.  create the sql query
+            resultSet = statement.executeQuery("SELECT * FROM phones");
+
+            //4. loop over the results, create MobilePhone objects
+            //   and add it to the ArrayList
+            while (resultSet.next())
+            {
+                MobilePhone newPhone = new MobilePhone(
+                        resultSet.getString("make"),
+                        resultSet.getString("model"),
+                        resultSet.getString("os"),
+                        resultSet.getDouble("screenSize"),
+                        resultSet.getDouble("memory"),
+                        resultSet.getDouble("frontCamRes"),
+                        resultSet.getDouble("rearCamRes"),
+                        500);
+                phones.add(newPhone);
+            }
+        }
+        catch (SQLException e)
+        {
+            System.err.println(e);
+        }
+        finally {
+            if (conn != null)
+                conn.close();
+            if (statement != null)
+                statement.close();
+            if (resultSet != null)
+                resultSet.close();
+        }
+        return phones;
+    }
+
+
     public static String getOSForManufacturer(String manufacturer) throws SQLException {
         String os=null;
         Connection conn = null;
@@ -92,6 +141,11 @@ public class DBConnect {
         return os;
     }
 
+    /**
+     * This method receives a MobilePhone object and will store it in the DB
+     * @param newPhone - must be a valid MobilePhone object
+     * @throws SQLException
+     */
     public static void insertPhoneIntoDB(MobilePhone newPhone) throws SQLException {
         Connection conn=null;
         PreparedStatement ps = null;
@@ -118,7 +172,7 @@ public class DBConnect {
             ps.setDouble(7, newPhone.getRearCameraRes());
 
             //5. execute the INSERT statement
-            ps.executeQuery();
+            ps.executeUpdate();
         }
         catch (SQLException e)
         {
